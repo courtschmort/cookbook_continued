@@ -46,7 +46,7 @@ class RecipesController < ApplicationController
 
   private
     def recipes_path
-      params.require(:album).permit(:name, :genre)
+      params.require(:recipe).permit(:name, :genre)
     end
 
 end
