@@ -1,0 +1,24 @@
+<%= render "layouts/errors", :object => @recipe %>
+
+<%= form_for @recipe do |f| %>
+<%= f.label :title %>
+<div class="form-group">
+  <%= f.text_field :title, class: 'form-width' %>
+</div>
+<%= f.label :ingredients %>
+<div class="form-group">
+  <%= f.text_area :ingredients, class: 'form-width'%>
+</div>
+<%= f.label :instructions %>
+<div class="form-group">
+  <%= f.text_area :instructions, class: 'form-width' %>
+</div>
+<%= f.label :rating %>: <span id="range-value"></span>
+<div class="form-group">
+  <%= range_field(:recipe, :rating, in: 1..5, step: '1', id: 'slider', class: 'form-width') %>
+</div>
+<%= f.submit class: 'btn btn-success' %>
+<% end %>
+
+<br>
+<p><%= link_to "View all recipes", recipes_path %></p>

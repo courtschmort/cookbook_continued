@@ -1,0 +1,9 @@
+<h1><%= @recipe.title %></h1>
+<h3><%= @recipe.rating %></h3>
+
+<p><%= link_to "Edit", edit_recipe_path(@recipe) %></p>
+<p><%= link_to "Delete", recipe_path(@recipe),
+                         :data => {:confirm => "You sure?",
+                                   :method => "delete"} %></p>
+
+<p><%= link_to "Return to recipes", recipes_path %></p>
