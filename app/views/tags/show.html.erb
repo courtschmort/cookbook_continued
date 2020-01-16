@@ -1,25 +1,23 @@
-<h1><%= @recipe.title %></h1>
-<h3><%= @recipe.rating %></h3>
+<h1><%= @tag.categories %></h1>
 
-<% if @recipe.tags.any? %>
-  <h4>Here are the tags for this recipe:</h4>
+<% if @tag.recipes.any? %>
+  <h4>Here are the recipes for this tag:</h4>
 
-  <% @recipe.tags.each do |tag| %>
+  <% @tag.recipes.each do |recipe| %>
     <ul>
       <li>
-        <%= link_to tag.name, recipe_tag_path(@recipe, tag) %>
+        <%= link_to tag.categories, tag_recipe_path(@tag, recipe) %>
       </li>
     </ul>
   <% end %>
 <% else %>
-  <p>No tags are listed for this recipe.</p>
+  <p>No recipes are listed for this tag.</p>
 <% end %>
 
-<p><%= link_to "Add a tag", new_recipe_tag_path(@recipe) %></p>
-
-<p><%= link_to "Edit", edit_recipe_path(@recipe) %></p>
-<p><%= link_to "Delete recipe", recipe_path(@recipe),
+<p><%= link_to "Edit", edit_tag_path(@tag) %></p>
+<p><%= link_to "Delete tag", tag_path(@tag),
                         :data => {:confirm => "Are you sure?",
                                        :method => "delete"} %></p>
 
+<p><%= link_to "Return to tags", tags_path %></p>
 <p><%= link_to "Return to recipes", recipes_path %></p>
