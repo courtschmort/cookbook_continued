@@ -1,0 +1,8 @@
+This is WIP code for _recipe_form.html.erb:
+
+<% if @tags.any? %>
+<%= f.label :categories %>
+<div class="form-group">
+  <%= collection_select(:recipe_id, Tag.all, in: 1..5, value: '1', step: '1', id: 'slider', class: 'form-width') %>
+</div>
+<% end %>
