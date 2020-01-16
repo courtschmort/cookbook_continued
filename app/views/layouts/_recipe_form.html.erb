@@ -15,7 +15,7 @@
 </div>
 <%= f.label :rating %>: <span id="range-value"></span>
 <div class="form-group">
-  <%= range_field(:recipe, :rating, in: 1..5, step: '1', id: 'slider', class: 'form-width') %>
+  <%= range_field(:recipe, :rating, in: 1..5, value: '1', step: '1', id: 'slider', class: 'form-width') %>
 </div>
 <%= f.submit class: 'btn btn-success' %>
 <% end %>
