@@ -13,6 +13,7 @@ class TagsController < ApplicationController
   def create
     @tag = Tag.new(tag_params)
     if @tag.save
+      flash[:notice] = "#{@tag.categories} tag was successfully added!"
       redirect_to tags_path
     else
       render :new
@@ -32,7 +33,7 @@ class TagsController < ApplicationController
   def update
     @tag = Tag.find(params[:id])
     if @tag.update(tag_params)
-      redirect_to tags_path
+      redirect_to tag_path
     else
       render :edit
     end
@@ -41,6 +42,7 @@ class TagsController < ApplicationController
   def destroy
     @tag = Tag.find(params[:id])
     @tag.destroy
+    flash[:notice] = "#{@tag.categories} tag was successfully deleted!"
     redirect_to tags_path
   end
 
