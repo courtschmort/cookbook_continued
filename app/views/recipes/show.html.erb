@@ -11,6 +11,27 @@
 <p><span class="underline">Ingredients</span>: <%= @recipe.ingredients %></p>
 <p><span class="underline">Instructions</span>: <%= @recipe.instructions %></p>
 
+<% if @recipe.tags.any? %>
+  <h4>Here are the tags for <%= "#{@recipe.title}" %></h4>
+
+  <% @recipe.tags.each do |song| %>
+    <ul>
+      <li>
+        <%= link_to tag.categories, recipe_tag_path(@recipe, tag) %>
+      </li>
+    </ul>
+  <% end %>
+<% else %>
+  <p>No tags are listed for <%= "#{@recipe.title}" %>.</p>
+<% end %>
+
+<%= form_for @recipe do |f| %>
+<%= f.label :categories %>
+<div class="form-group">
+  <%= collection_select(:recipe, :id, Tag.all, :id, :categories, class: 'form-width') %>
+</div>
+<% end %>
+
 <a><%= link_to "Edit", edit_recipe_path(@recipe) %></a> |
 <a><%= link_to "Delete", recipe_path(@recipe),
   :data => {:confirm => "You sure?",
