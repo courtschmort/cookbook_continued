@@ -1,6 +1,13 @@
 <h1>Recipes</h1>
 
 <% if @recipes.any? %>
+<form>
+  <label>Sort by:</label>
+  <div class="form-group">
+    <button class="btn btn-primary" type="submit" name="asc">Lowest Rated</button>
+    <button class="btn btn-primary" type="submit" name="desc">Highest Rated</button>
+  </div>
+</form>
 <ul>
   <% @recipes.each do |recipe| %>
   <li><%= link_to recipe.title, recipe_path(recipe) %></li>
@@ -11,4 +18,5 @@
 <% end %>
 
 <p><%= link_to "Create new recipe", new_recipe_path %></p>
+<hr>
 <p><%= link_to "View all tags", tags_path %></p>

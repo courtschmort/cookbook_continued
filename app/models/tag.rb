@@ -1,4 +1,5 @@
 class Tag < ApplicationRecord
+
   validates :categories, presence: true
 
   has_many :recipe_tags
@@ -10,4 +11,5 @@ class Tag < ApplicationRecord
   def downcase_tag
     self.categories = self.categories.downcase
   end
+  
 end

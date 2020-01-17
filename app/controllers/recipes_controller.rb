@@ -2,6 +2,11 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.all
+    if params[:asc]
+      @recipes = Recipe.sort_by_asc
+    elsif params[:desc]
+      @recipes = Recipe.sort_by_desc
+    end
     render :index
   end
 
@@ -32,7 +37,11 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-    if @recipe.update(recipe_params)
+    if (params[:commit] === "Add Tag")
+      tag = Tag.find(params[:recipe][:id])
+      tag.recipes << @recipe
+      redirect_to recipe_path
+    elsif @recipe.update(recipe_params)
       redirect_to recipe_path
     else
       render :edit
@@ -47,8 +56,8 @@ class RecipesController < ApplicationController
   end
 
   private
-    def recipe_params
-      params.require(:recipe).permit(:title, :rating, :ingredients, :instructions)
-    end
+  def recipe_params
+    params.require(:recipe).permit(:title, :rating, :ingredients, :instructions)
+  end
 
 end
